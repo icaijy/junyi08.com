@@ -4,5 +4,6 @@ app_name = 'article'
 from . import views
 
 urlpatterns = [
-    path('articleList/', views.articleList, name='articleList')
+    path('', views.articleList, name='articleList'),
+    path('detail/<int:id>/', views.detail, name='detail'),
 ]
