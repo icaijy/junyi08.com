@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    首页
+{% endblock title %}
+{% block content %}
+
+<!-- article list -->
+<div class="container">
+    <div class="row mt-2">
+
+        {% for article in articles %}
+        <div class="col-4 mb-5">
+            <div class="card h-100">
+                <h4 class="card-header">{{ article.title }}</h4>
+                <div class="card-body">
+                    <p class="card-text">{{ article.summary|slice:'50' }}...</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{% url 'article:detail' article.id %}" class="btn btn-primary">阅读本文 <i class="fa fa-book-reader"></i> </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}
