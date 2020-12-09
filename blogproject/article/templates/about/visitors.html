@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    访客统计(beta)
+{% endblock title %}
+{% block content %}
+<h1>访客统计——测试版本（数据仅供参考）</h1>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>访问总次数</th>
+			<th>独立访客总数（访客总ip）</th>
+			<th>返回访问率</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>{{ visitor_stats.total }}</td>
+			<td>{{ visitor_stats.unique }}</td>
+			<td>{{ visitor_stats.return_ratio|floatformat }}%</td>
+		</tr>
+	</tbody>
+</table>
+{% endblock content %}
