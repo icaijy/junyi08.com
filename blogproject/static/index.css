@@ -1,2 +1,14 @@
 p{word-break:break-all;}
 html,body{height: 100%;}
+
+#push{
+    height:70px
+}
+#footer{
+    height:60px
+}
+
+#content{
+  min-height: 100%;
+  margin-bottom: -60px
+}

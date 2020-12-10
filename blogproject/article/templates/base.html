@@ -14,7 +14,10 @@
 
 <body>
     {% include 'header.html' %}
-    {% block content %}{% endblock content %}
+    <section id="content">
+        {% block content %}{% endblock content %}
+        <div id="push"></div> <!-- avoid content cover the footer -->
+    </section>
     {% include 'footer.html' %}
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1-lts/dist/umd/popper.min.js"></script>
