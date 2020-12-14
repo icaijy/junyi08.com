@@ -1,5 +1,4 @@
 /**/__pycache__
-/blogproject/db.sqlite3
-/blogproject/blogproject/settings.py
-/venv
+/db.sqlite3
+/blogproject/settings.py
 /cdn.txt
