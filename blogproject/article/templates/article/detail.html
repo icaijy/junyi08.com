@@ -14,7 +14,13 @@
 <div class="container">
     <div class="row">
         <h1 class="col-12 mt-4 mb-4">{{ article.title }}</h1>
-        <h6 class="col-12 mb-1 text-secondary"><small><i class="fas fa-clock"></i>创建时间：{{ article.createTime }}&nbsp;&nbsp;<i class="fa fa-edit"></i>最后更新时间：{{ article.updateTime }}</small></h6>
+        <h6 class="col-12 mb-1 text-secondary">
+            <small>
+                <i class="fas fa-clock"></i>创建时间：{{ article.createTime }}&nbsp;&nbsp;
+                <i class="fa fa-edit"></i>最后更新时间：{{ article.updateTime }}
+                <i class="fas fa-eye"></i>浏览量：{{ article.views }}
+            </small>
+        </h6>
         <div class="col-12 bg-white" >
             <p class="articleContent codehilite">{{ article.content|safe }}</p>
         </div>

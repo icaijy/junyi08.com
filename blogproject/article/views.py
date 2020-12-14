@@ -33,6 +33,8 @@ def articleList(request):
 def detail(request, id):
     try:
         article = models.Article.objects.get(id=id)
+        article.views += 1
+        article.save(update_fields=['views'])
         article.content = markdown.markdown(article.content,extensions=['markdown.extensions.extra','markdown.extensions.codehilite','markdown.extensions.toc'])
         context = {
             'article':article,
@@ -40,6 +42,7 @@ def detail(request, id):
     except:
         raise http.Http404
     return render(request, 'article/detail.html', context)
+
 
 def visitor(request):
     end_time = now()
