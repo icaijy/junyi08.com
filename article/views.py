@@ -46,7 +46,8 @@ def detail(request, id):
 
 def visitor(request):
     end_time = now()
-    start_time = end_time - timedelta(days=7)
+    start_time = Visitor.objects.order_by('start_time')[0].start_time
+    print(start_time)
     defaults = {'start': start_time, 'end': end_time}
 
     form = DashboardForm(data=request.GET or defaults)
