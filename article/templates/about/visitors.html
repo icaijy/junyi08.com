@@ -4,10 +4,13 @@
 {% block title %}
     访客统计
 {% endblock title %}
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.0.0/dist/echarts.min.js"></script>
+{% endblock head %}
 {% block content %}
 <h1>访客统计</h1>
+<center><h3>访客总统计表</h3></center>
 <table class="table">
-	<caption>访客统计表</caption>
 	<thead>
 		<tr>
 			<th>访问总次数</th>
@@ -23,4 +26,51 @@
 		</tr>
 	</tbody>
 </table>
+
+
+<!-- start draw diagram -->
+
+<div id="diagram" style="width: 600px;height:400px;"></div>
+    <script type="text/javascript">
+    var chart = echarts.init(document.getElementById('diagram'));
+
+	var option = {
+    title: {
+        text: '近7日访客变化'
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data: ['总访问次数','独立访客数']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['1', '2', '3', '4', '前天', '昨天', '今天']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name: '总访问次数',
+            type: 'line',
+            data: {{ week_total|safe }}
+        },
+        {
+            name: '独立访客数',
+            type: 'line',
+            data: {{ week_unique }}
+        },
+    ]
+};
+	chart.setOption(option)
+    </script>
 {% endblock content %}

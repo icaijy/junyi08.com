@@ -2,7 +2,11 @@
 {% extends "base.html" %}
 {% load static %}
 
-<!-- 写入 base.html 中定义的 title -->
+{% block head %}
+<link rel="stylesheet" href="{% static 'monokai.css' %}">
+{% endblock head %}
+
+<!-- write title -->
 {% block title %}
 {{ article.title }}
 {% endblock title %}

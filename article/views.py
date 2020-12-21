@@ -31,6 +31,8 @@ def detail(request, id):
 # visitor count
 from django import forms
 from tracking.models import Visitor
+from datetime import timedelta
+
 input_formats = [
     '%Y-%m-%d %H:%M:%S',    # '2006-10-25 14:30:59'
     '%Y-%m-%d %H:%M',       # '2006-10-25 14:30'
@@ -43,13 +45,27 @@ class DashboardForm(forms.Form):
     end = forms.DateTimeField(required=False, input_formats=input_formats)
 
 def visitor(request):
+    week_total = []
+    week_unique = []
     end_time = now()
     # start time: track start time
     start_time = Visitor.objects.order_by('start_time')[0].start_time
     visitor_stats = Visitor.objects.stats(start_time, end_time)
 
+    for x in range(7):
+        week_total.append(Visitor.objects.stats(\
+            end_time-timedelta(days=x+1), \
+            end_time-timedelta(days=x))['total'])
+
+    for x in range(7):
+        week_unique.append(Visitor.objects.stats(\
+            end_time-timedelta(days=x+1), \
+            end_time-timedelta(days=x))['unique'])
+
     context = {
         'visitor_stats': visitor_stats,
+        'week_total':week_total,
+        'week_unique':week_unique
     }
     return render(request, 'about/visitors.html', context)
 
