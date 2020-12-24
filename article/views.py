@@ -69,7 +69,8 @@ def visitor(request):
     context = {
         'visitor_stats': visitor_stats,
         'week_total':week_total,
-        'week_unique':week_unique
+        'week_unique':week_unique,
+        'start_time':start_time
     }
     return render(request, 'about/visitors.html', context)
 
