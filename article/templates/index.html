@@ -9,19 +9,35 @@
 <!-- article list -->
 <div class="container">
     <div class="row mt-2">
-
-        {% for article in articles %}
-        <div class="col-4 mb-5">
-            <div class="card h-100">
-                <h4 class="card-header">{{ article.title }}</h4>
-                <div class="card-body">
-                    <p class="card-text">{{ article.summary|slice:'50' }}...</p>
-                </div>
-                <div class="card-footer">
-                    <a href="{% url 'article:detail' article.id %}" class="btn btn-primary">阅读本文 <i class="fab fa-readme"></i> </a>
+        <!--    pin articles    -->
+        {% for article in hot %}
+            {% if article.pin == True %}
+            <div class="col-4 mb-5">
+                <i class="fas fa-thumbtack fa-3x" id="pin"></i>
+                <div class="card h-100">
+                    <h4 class="card-header">{{ article.title }}</h4>
+                    <div class="card-body">
+                        <p class="card-text">{{ article.summary|slice:'50' }}...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'article:detail' article.id %}" class="btn" style="background-color:red;color:white">阅读本文 <i class="fab fa-readme"></i> </a>
+                    </div>
                 </div>
             </div>
-        </div>
+<!--    simple articles        -->
+            {% else %}
+                    <div class="col-4 mb-5">
+                <div class="card h-100">
+                    <h4 class="card-header">{{ article.title }}</h4>
+                    <div class="card-body">
+                        <p class="card-text">{{ article.summary|slice:'50' }}...</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'article:detail' article.id %}" class="btn btn-primary">阅读本文 <i class="fab fa-readme"></i> </a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
         {% endfor %}
 
     </div>

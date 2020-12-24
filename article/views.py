@@ -6,10 +6,13 @@ import markdown
 from django.shortcuts import render
 from django.utils.timezone import now
 
-def articleList(request):
+def index(request):
     articles = models.Article.objects.all()
+    hot = articles.order_by('-pin','-views')
+    new = articles.order_by('-createTime')
     context = {
-        'articles' : articles,
+        'hot' : hot,
+        'newest':new
     }
     return render(request, 'index.html', context)
 
@@ -17,12 +20,13 @@ def articleList(request):
 def detail(request, id):
     try:
         article = models.Article.objects.get(id=id)
-        article.views += 1
-        article.save(update_fields=['views'])
-        article.content = markdown.markdown(article.content,extensions=['markdown.extensions.extra','markdown.extensions.codehilite','markdown.extensions.toc'])
+        article.views += 1    # views +1
+        article.save(update_fields=['views'])    # save to database
+        article.content = markdown.markdown(article.content,extensions=['markdown.extensions.extra','markdown.extensions.codehilite',])
         context = {
             'article':article,
         }
+    # if article not found
     except:
         raise http.Http404
     return render(request, 'article/detail.html', context)

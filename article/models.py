@@ -24,9 +24,8 @@ class Article(models.Model):
     createTime = models.DateTimeField(default=timezone.now)
     updateTime = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
+    pin = models.BooleanField(default=False)
 
-    class Meta:
-        ordering = ('-updateTime',)
 
     def __str__(self):
         return self.title
