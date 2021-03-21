@@ -1,6 +1,6 @@
 # junyi08.com's source code
 This project is [junyi08.com](http://junyi08.com)'s source code
-#run
+# run
 Go to the root of source code(contain `manage.py`),and create `env.json` file.
 
 env.json's content:
