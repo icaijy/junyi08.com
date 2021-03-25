@@ -25,7 +25,7 @@ class Article(models.Model):
     updateTime = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
     pin = models.BooleanField(default=False)
-
+    draft = models.BooleanField(default=False)
 
     def __str__(self):
         return self.title
