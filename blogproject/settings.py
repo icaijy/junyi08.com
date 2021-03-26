@@ -48,13 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'article',
     'mdeditor',
-    'tracking',
+    # 'tracking',
 ]
 
 
 MIDDLEWARE = [
-    'tracking.middleware.VisitorTrackingMiddleware',
-
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
